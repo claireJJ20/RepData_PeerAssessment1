@@ -30,6 +30,8 @@ totalSteps <- actdata %>% group_by(date) %>% summarise(totalSteps = sum(steps, n
 fig1 <- ggplot(totalSteps, aes(totalSteps))
 fig1 +geom_histogram(binwidth = 500)
 ```
+![](instructions_fig/fig1.png)<!-- -->
+
 #### 3. Calculate and report the mean and median of the total number of steps taken per day
 ```{r mean_median, echo=TRUE}
 meanSteps <- mean(totalSteps$totalSteps)
@@ -46,6 +48,8 @@ fig2 <- ggplot(averagePattern, aes(x=interval, y=meanSteps))
 fig2 + geom_line() +
   xlab("5-minute interval") + ylab("average number of steps taken")
 ```
+![](instructions_fig/fig2.png)<!-- -->
+
 #### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 ```{r max interval, echo=TRUE}
 maxSteps <- which.max(averagePattern$meanSteps)
@@ -78,6 +82,7 @@ paste("Mean_Imputed: ", meanStepsImputed)
 paste("Median_Imputed: ", medianStepsImputed)
 paste("Do these values differ from the estimates from the first part of the assignment?", (meanSteps == meanStepsImputed))
 ```
+![](instructions_fig/Fig3.png)<!-- -->
 
 # Are there differences in activity patterns between weekdays and weekends?
 #### 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
@@ -91,4 +96,4 @@ averagePatternImputed <- aggregate(steps ~ interval + dateType, data=actdataImpu
 fig4 <- ggplot(averagePatternImputed, aes(x=interval, y=steps)) 
 fig4 + geom_line() +  facet_grid(dateType ~ .) + xlab("5-minute interval") + ylab("average number of steps taken")
 ```
-
+![](instructions_fig/fig4.png)<!-- -->
