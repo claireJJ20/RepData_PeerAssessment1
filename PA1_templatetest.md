@@ -39,7 +39,10 @@ medianSteps <- median(totalSteps$totalSteps)
 paste("Mean: ", meanSteps)
 paste("Median: ", medianSteps)
 ```
- 
+```
+Mean:  9354.22950819672
+Median:  10395
+```
 # What is the average daily activity pattern?
 #### 1. Make a time series plot (i.e. \color{red}{\verb|type = "l"|}type="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 ```r
@@ -56,6 +59,9 @@ maxSteps <- which.max(averagePattern$meanSteps)
 timeMaxSteps <-  gsub("([0-9]{1,2})([0-9]{2})", "\\1:\\2", averagePattern[maxSteps,'interval'])
 paste("Max number of steps at: ", timeMaxSteps)
 ```
+```
+Max number of steps at:  8:35
+```
 
 # Imputing missing values
 #### 1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with \color{red}{\verb|NA|}NAs)
@@ -63,6 +69,10 @@ paste("Max number of steps at: ", timeMaxSteps)
 missingValues <- length(which(is.na(actdata$steps)))
 paste("Number of Missing Values: ", missingValues)
 ```
+```
+Number of Missing Values:  2304
+```
+
 #### 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 #### 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
 ```r
@@ -83,7 +93,11 @@ paste("Median_Imputed: ", medianStepsImputed)
 paste("Do these values differ from the estimates from the first part of the assignment?", (meanSteps == meanStepsImputed))
 ```
 ![](instructions_fig/Fig3.png)<!-- -->
-
+```
+Mean_Imputed:  9354.22950819672
+Median_Imputed:  10395
+Do these values differ from the estimates from the first part of the assignment? TRUE
+```
 # Are there differences in activity patterns between weekdays and weekends?
 #### 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 ```r
