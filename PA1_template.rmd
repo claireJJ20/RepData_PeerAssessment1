@@ -9,7 +9,7 @@ output:
 ```{r load data}
 knitr::opts_chunk$set(message = TRUE, warning = TRUE)
 if(!file.exists("activity.csv")){
-    unzip("repdata_data_activity.zip")
+    unzip("activity.zip")
 }
 actdata <- read.csv("activity.csv")
 suppressMessages(library(dplyr))
