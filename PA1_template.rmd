@@ -7,6 +7,7 @@ output:
 
 # Load the data and package
 ```{r load data}
+knitr::opts_chunk$set(message = TRUE, warning = TRUE)
 if(!file.exists("activity.csv")){
     unzip("repdata_data_activity.zip")
 }
@@ -67,7 +68,8 @@ na_mean(actdataImputed)
 #### 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 ```{r histo total Number of Steps taken each day, echo=TRUE}
 totalStepsImputed <- actdataImputed %>% group_by(date) %>% summarise(totalStepsImputed = sum(steps, na.rm = TRUE))
-ggplot(totalStepsImputed, aes(totalStepsImputed))+geom_histogram(binwidth = 500)
+Fig3 <- ggplot(totalStepsImputed, aes(totalStepsImputed))
+Fig3 +geom_histogram(binwidth = 500)
 
 meanStepsImputed <- mean(totalStepsImputed$totalStepsImputed)
 medianStepsImputed <- median(totalStepsImputed$totalStepsImputed)
@@ -85,7 +87,7 @@ actdataImputed$dateType <-  ifelse(weekdays(as.POSIXlt(actdataImputed$date)) %in
 #### 2. Make a panel plot containing a time series plot (i.e. \color{red}{\verb|type = "l"|}type="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 ```{r time seris plot, echo=TRUE}
 averagePatternImputed <- aggregate(steps ~ interval + dateType, data=actdataImputed, FUN=mean)
-fig3 <- ggplot(averagePatternImputed, aes(x=interval, y=steps)) 
-fig3 + geom_line() +  facet_grid(dateType ~ .) + xlab("5-minute interval") + ylab("average number of steps taken")
+fig4 <- ggplot(averagePatternImputed, aes(x=interval, y=steps)) 
+fig4 + geom_line() +  facet_grid(dateType ~ .) + xlab("5-minute interval") + ylab("average number of steps taken")
 ```
 
